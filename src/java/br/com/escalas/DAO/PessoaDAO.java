@@ -5,6 +5,7 @@
  */
 package br.com.escalas.DAO;
 import br.com.escalas.connection.PostgresConnection;
+import br.com.escalas.entidades.Entidade;
 import br.com.escalas.entidades.Pessoa;
 /**
  *
@@ -12,19 +13,29 @@ import br.com.escalas.entidades.Pessoa;
  */
 public class PessoaDAO extends BaseDAO {
 
-    private final PostgresConnection psConn;
+    
+    private final String table;
+    private final Entidade entidade;
+    
     
     
     public PessoaDAO( Pessoa pessoa ) {
-        this.psConn = new PostgresConnection();        
-        //this.pessoa = pessoa;
+              
+        this.table = "pessoas";
+        this.entidade = pessoa;
         
         
     }
-    
-    
-    
-    
+
+    @Override
+    public String getTable() {
+        return this.table;
+    }
+
+    @Override
+    public Entidade getEntidade() {
+        return this.entidade;
+    }
     
     
     

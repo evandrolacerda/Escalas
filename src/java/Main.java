@@ -1,14 +1,10 @@
 
+import br.com.escalas.DAO.PessoaDAO;
 import br.com.escalas.connection.PostgresConnection;
-import br.com.escalas.entidades.Entidade;
-import br.com.escalas.entidades.Insertable;
 import br.com.escalas.entidades.Pessoa;
-import java.lang.reflect.Field;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,22 +22,36 @@ public class Main {
         PostgresConnection pgconn = new PostgresConnection();
 
         Connection conn = pgconn.getConnection();
-        Entidade entidade = new Pessoa();
+        
 
         System.out.println(  );
         
+        Pessoa evandro = new Pessoa();
+        
+        evandro.setAtivo( Pessoa.ATIVO_SIM );
+        evandro.setEmail("evandro@teste.com");
+        evandro.setSexo("M");
+        evandro.setNome("Evandro Lacerda");
+        evandro.setId_turno(1);
         
         
-
-        try {
-            PreparedStatement pstm = conn.prepareStatement("INSERT INTO turnos(turno, sigla) VALUES('MANHÃ', 'MA') ");
-            pstm.execute();
-
-            System.out.println("Inserido com sucesso");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        PessoaDAO pessoaDao = new PessoaDAO(evandro);
+        List<Object> values = new ArrayList();
+        
+        
+        values.add( evandro.getNome() );
+        values.add( evandro.getEmail() );
+        values.add( evandro.getAtivo() );
+        values.add( evandro.getSexo() );
+        values.add( evandro.getId_turno() );
+        
+        
+        pessoaDao.insere( values );
+        
+        
+        
+        
+        
 
     }
 

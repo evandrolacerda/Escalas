@@ -12,8 +12,8 @@ package br.com.escalas.entidades;
  */
 public class Pessoa implements Entidade{
     
-    public final int ATIVO_SIM = 1;
-    public final int ATIVO_NAO = 0;
+    public static final boolean ATIVO_SIM = true;
+    public static final boolean ATIVO_NAO = false;
     
     @Insertable
     private String nome;
@@ -25,7 +25,7 @@ public class Pessoa implements Entidade{
     @Insertable
     private String sexo;
     @Insertable
-    private Integer turnoId;
+    private Integer id_turno;
 
     public String getNome() {
         return nome;
@@ -67,12 +67,12 @@ public class Pessoa implements Entidade{
         this.sexo = sexo;
     }
 
-    public Integer getTurnoId() {
-        return turnoId;
+    public Integer getId_turno() {
+        return id_turno;
     }
 
-    public void setTurnoId(Integer turnoId) {
-        this.turnoId = turnoId;
+    public void setId_turno(Integer id_turno) {
+        this.id_turno = id_turno;
     }
     
     
